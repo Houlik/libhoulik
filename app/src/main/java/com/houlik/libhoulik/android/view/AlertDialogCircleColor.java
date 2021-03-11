@@ -20,7 +20,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
-
 import com.houlik.libhoulik.R;
 import com.houlik.libhoulik.android.util.ColorUtils;
 import com.houlik.libhoulik.android.listener.OnPickColorListener;
