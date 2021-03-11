@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"
+    android:useLevel="false">
+
+    <stroke
+        android:width="1dp"
+        android:color="#7F7F7F7F" />
+    <corners android:radius="5dp"/>
+    <solid android:color="@color/white" />
+</shape>
+
+<!--节点
+shape = [ "rectangle" | "oval" | "horizontal_bottom_line" | "ring" ]
+rectangle 矩形，这个是默认值；oval 椭圆；horizontal_bottom_line 直线；ring 圆环；
+
+5个属性是用在圆环 shape="ring"
+android:innerRadius 内环半径
+android:innerRadiusRatio 设置内环半径比例，默认值等于9， 内环半径 = 环宽度 / 该值，会被android:innerRadius 覆盖
+android:thickness 环的厚度，即内环与外环的距离
+android:thicknessRatio 设置环的厚度比例，默认值等于3，环厚度 = 环宽度 / 该值，会被android:thickness 覆盖
+android:useLevel 当值为true时，作为一个LeveListDrawable，这里必须为设置为false，不然圆环可能不会出现；LeveListDrawable
+
+
+节点 corners 创建圆角，仅用于矩形 shape="rectangle"
+android:radius 设置为圆角矩形，该值为圆角半径；
+android:topLeftRadius 设置左上角圆角半径；
+android:topRightRadius 设置右上角圆角半径；
+android:bottomLeftRadius 设置左下角圆角半径；
+android:bottomRightRadius 设置右下角圆角半径；
+
+节点 gradient 指定颜色渐变效果
+android:angle 渐变的角度，必须是45的倍数，默认值 0 ；
+angle=0        从左到右
+angle=45      从左下到右上
+angle=90      从下到上
+angle=135    从右下到左上
+angle=180    从右到左
+angle=225    从右上到左下
+angle=270    从上到下
+angle=315    从左上到右下
+
+android:centerX  相对X轴位置，取值 (0 ~ 1.0)
+android:centerY  相对Y轴位置，取值 (0 ~ 1.0)
+这两个要配合使用，设置渐变的中心点位置
+android:startColor 设置渐变的开始颜色
+android:centerColor 设置渐变的中间颜色
+android:endColor 设置渐变的结束颜色
+其中，开始颜色和结束颜色是必须有的，如果二缺一，缺的那个会默认为白色；
+如果设置中间颜色，颜色按 开始》中间》结束 顺序渐变
+
+android:type 渐变图案的类型
+
+linear 线性渐变，默认值，沿着一条轴线（水平或垂直）改变颜色，从起点到终点颜色进行顺序渐变，从一边拉向另一边；
+radial 径向渐变，放射性渐变，从内到外的圆形颜色渐变，从中间拉向外面；
+sweep 扫描渐变，以右边为起点，按顺时针方向扫描；
+android:gradientRadius 仅用于径向渐变 type=“radial" 时，
+
+该值用于设置渐变圆形半径
+android:useLevel 当值为true时，作为一个LeveListDrawable
+
+节点 padding 设置填充内容边距
+等同控件的android:padding 属性
+android:left 填充左边距
+android:top 填充上边距
+androdi:right 填充右边距
+android:bottom 填充下边距
+
+节点 size 设置尺寸大小
+设置宽高为固定值，ImageView控件可能需要用到
+android:height 设置高度
+android:width 设置宽度
+
+节点 solid 设置纯色填充内容
+android:color 设置填充的颜色
+
+节点 stroke 设置边框线
+android:width 边框线的宽度，也就是粗细
+android:color  边框线的颜色
+android:dashGap 设置虚线效果，空白划线长度
+android:dashWidth 设置虚线效果，着色划线长度
+
+
+
+-->

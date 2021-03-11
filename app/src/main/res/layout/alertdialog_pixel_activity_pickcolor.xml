@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/alertdialog_activity_pickcolor_iv_show"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/alertdialog_activity_pickcolor_tv_hex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="40dp">
+        <TextView
+            android:id="@+id/alertdialog_activity_pickcolor_tv_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="A"/>
+        <TextView
+            android:id="@+id/alertdialog_activity_pickcolor_tv_r"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="R"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/alertdialog_activity_pickcolor_tv_g"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="G"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/alertdialog_activity_pickcolor_tv_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="B"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/alertdialog_activity_pickcolor_sb_alpha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/alertdialog_activity_pickcolor_iv"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:layout_centerHorizontal="true"
+        android:progress="255"
+        android:max="255"/>
+
+    <ImageView
+        android:id="@+id/alertdialog_activity_pickcolor_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
