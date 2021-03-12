@@ -941,7 +941,4 @@ public class BluetoothUtils {
         void sendReceiveDataStream();
     }
 
-    public void doSomething(){
-
-    }
 }
