@@ -56,4 +56,12 @@ public class SharedPreferencesUtils {
     public void apply(SharedPreferences.Editor spe){
         spe.apply();
     }
+
+    /**
+     * 直接写入磁盘, 如果重视写入操作是否成功可用此方法
+     * @param spe
+     */
+    public void commit(SharedPreferences.Editor spe){
+        spe.commit();
+    }
 }
