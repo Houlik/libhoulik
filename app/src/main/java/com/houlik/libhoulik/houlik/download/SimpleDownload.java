@@ -1,8 +1,5 @@
 package com.houlik.libhoulik.houlik.download;
 
-//import android.support.annotation.NonNull;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import java.io.BufferedInputStream;
@@ -14,8 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
-
-//import io.reactivex.annotations.NonNull;
 
 /**
  * 服务器下载文件
@@ -68,38 +63,27 @@ public class SimpleDownload implements Runnable {
      * @return
      */
     private InputStream getURLInputStream(){
-        Log.i(TAG, "SimpleDownload getURLInputStream : 1");
         InputStream inputStream = null;
-        Log.i(TAG, "SimpleDownload getURLInputStream : 2");
         try {
-            Log.i(TAG, "SimpleDownload getURLInputStream : 3");
             url = new URL(downloadURL);
-            Log.i(TAG, "SimpleDownload getURLInputStream : 4");
             httpURLConnection = (HttpURLConnection) url.openConnection();
-            Log.i(TAG, "SimpleDownload getURLInputStream : 5");
-            //设置连接与读取超时
-            httpURLConnection.setConnectTimeout(20*1000);//正常网络有效
-            Log.i(TAG, "SimpleDownload getURLInputStream : 6");
-            httpURLConnection.setReadTimeout(20*1000);//不正常网络有效
-            Log.i(TAG, "SimpleDownload getURLInputStream : 7");
-            httpURLConnection.setRequestMethod("GET");
-            Log.i(TAG, "SimpleDownload getURLInputStream : 8");
             //必须启动线程运行, 否则抛异常
             httpURLConnection.setRequestProperty("Accept-Encoding", "identity");
-            Log.i(TAG, "SimpleDownload getURLInputStream : 9");
-            Log.i(TAG, "SimpleDownload getURLInputStream : 10");
+            httpURLConnection.setRequestProperty("Accept", "text/plain");
+            httpURLConnection.setRequestProperty("内容长度",""+ httpURLConnection.getContentLength());
+            //设置连接与读取超时
+            httpURLConnection.setConnectTimeout(20*1000);//正常网络有效
+            httpURLConnection.setReadTimeout(20*1000);//不正常网络有效
+            httpURLConnection.setDoInput(true);
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.connect();
+
             if (httpURLConnection.getResponseCode() == 200) {
-                Log.i(TAG, "SimpleDownload getURLInputStream : 11");
                 if (downloadCallback != null) {
-                    Log.i(TAG, "SimpleDownload getURLInputStream : 12");
                     downloadCallback.getDataSize(httpURLConnection.getContentLength());
-                    Log.i(TAG, "SimpleDownload getURLInputStream : 13");
                 }
-                Log.i(TAG, "SimpleDownload getURLInputStream : 14");
                 inputStream = url.openStream();
-                Log.i(TAG, "SimpleDownload getURLInputStream : 15");
             }
-            Log.i(TAG, "SimpleDownload getURLInputStream : 16");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -110,7 +94,6 @@ public class SimpleDownload implements Runnable {
             }
             e.printStackTrace();
         }
-        Log.i(TAG, "SimpleDownload getURLInputStream : 17");
         return inputStream;
     }
 
@@ -154,18 +137,12 @@ public class SimpleDownload implements Runnable {
      * RandomAccessFile 没有文件将自动创建, 对于已经存在文件不会更改文件已有的大小
      */
     private void useRandomAccessFile(){
-        Log.i(TAG, "SimpleDownload useRandomAccessFile : 1");
         BufferedInputStream inputStream = new BufferedInputStream(getURLInputStream());
-        Log.i(TAG, "SimpleDownload useRandomAccessFile : 2");
         RandomAccessFile randomAccessFile = null;
-        Log.i(TAG, "SimpleDownload useRandomAccessFile : 3");
         try {
             randomAccessFile = new RandomAccessFile(dirPath+fileName, "rw");
-            Log.i(TAG, "SimpleDownload useRandomAccessFile : 4");
             byte[] bytes = new byte[1024];
-            Log.i(TAG, "SimpleDownload useRandomAccessFile : 5");
             int len;
-            Log.i(TAG, "SimpleDownload useRandomAccessFile : 6");
 
             while ((len = inputStream.read(bytes)) != -1){
                 randomAccessFile.write(bytes, 0 ,len);
@@ -173,13 +150,9 @@ public class SimpleDownload implements Runnable {
                     downloadCallback.getDownloadProgress(len, totalDownloadSize += len);
                 }
             }
-            Log.i(TAG, "SimpleDownload useRandomAccessFile : 7");
             randomAccessFile.close();
-            Log.i(TAG, "SimpleDownload useRandomAccessFile : 8");
             inputStream.close();
-            Log.i(TAG, "SimpleDownload useRandomAccessFile : 9");
             httpURLConnection.disconnect();
-            Log.i(TAG, "SimpleDownload useRandomAccessFile : 10");
         } catch (FileNotFoundException e) {
             if(downloadCallback != null) {
                 //回调下载不成功
@@ -193,12 +166,10 @@ public class SimpleDownload implements Runnable {
             }
             e.printStackTrace();
         }
-        Log.i(TAG, "SimpleDownload useRandomAccessFile : 11");
         if(downloadCallback != null) {
             //回调下载成功
             downloadCallback.getDownloadResult(0);
         }
-        Log.i(TAG, "SimpleDownload useRandomAccessFile : 12");
     }
 
     @Override
