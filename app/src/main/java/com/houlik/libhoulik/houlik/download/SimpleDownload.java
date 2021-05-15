@@ -70,6 +70,10 @@ public class SimpleDownload implements Runnable {
         try {
             url = new URL(downloadURL);
             httpURLConnection = (HttpURLConnection) url.openConnection();
+            //设置连接与读取超时
+            httpURLConnection.setConnectTimeout(20*1000);//正常网络有效
+            httpURLConnection.setReadTimeout(20*1000);//不正常网络有效
+            httpURLConnection.setRequestMethod("GET");
             //必须启动线程运行, 否则抛异常
             httpURLConnection.setRequestProperty("Accept-Encoding", "identity");
             downloadCallback.getHttpURLConnectioninstance(httpURLConnection);
