@@ -70,12 +70,13 @@ public class SimpleDownload implements Runnable {
             //必须启动线程运行, 否则抛异常
             httpURLConnection.setRequestProperty("Accept-Encoding", "identity");
             httpURLConnection.setRequestProperty("Accept", "text/plain");
-            httpURLConnection.setRequestProperty("内容长度",""+ httpURLConnection.getContentLength());
+            httpURLConnection.setRequestMethod("HEAD");
             //设置连接与读取超时
             httpURLConnection.setConnectTimeout(20*1000);//正常网络有效
             httpURLConnection.setReadTimeout(20*1000);//不正常网络有效
             httpURLConnection.setDoInput(true);
             httpURLConnection.setDoOutput(true);
+            httpURLConnection.setUseCaches(false);
             httpURLConnection.connect();
 
             if (httpURLConnection.getResponseCode() == 200) {
