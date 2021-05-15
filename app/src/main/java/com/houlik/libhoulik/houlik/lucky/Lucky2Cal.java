@@ -34,7 +34,7 @@ public class Lucky2Cal {
     /**
      * 将四位数的参数,逐个按照对应的列表,循环后返回通过集合确定无相同四位数的列表
      * 例子: 1234 = 7234 | 1534 | 1834 | 1264 | 1294 | 1230 等...类似四位数
-     * @param fourDigitNum 四位数
+     * @param fourDigitNum 四位数 new String[]{"?","?","?","?"} | new String[]{"1","2","3","4"}
      * @return
      */
     public List<String> getArraysAfterLoop(@NonNull String[] fourDigitNum){
@@ -72,14 +72,5 @@ public class Lucky2Cal {
             }
         }
         return list4DigitNum;
-    }
-
-    public static void main(String[] args) {
-        Lucky2Cal l = new Lucky2Cal();
-        List<String> t = l.getArraysAfterLoop(new String[]{"5","0","6","9"});
-        for (Object obj: t
-             ) {
-            System.out.println(obj);
-        }
     }
 }

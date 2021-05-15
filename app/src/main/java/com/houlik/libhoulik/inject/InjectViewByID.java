@@ -13,5 +13,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface InjectViewByID {
     int value();
-    int parentId() default 0;
+    String strValue();
 }
