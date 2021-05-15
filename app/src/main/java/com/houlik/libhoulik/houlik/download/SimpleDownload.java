@@ -87,7 +87,6 @@ public class SimpleDownload implements Runnable {
             //必须启动线程运行, 否则抛异常
             httpURLConnection.setRequestProperty("Accept-Encoding", "identity");
             Log.i(TAG, "SimpleDownload getURLInputStream : 9");
-            downloadCallback.getHttpURLConnectioninstance(httpURLConnection);
             Log.i(TAG, "SimpleDownload getURLInputStream : 10");
             if (httpURLConnection.getResponseCode() == 200) {
                 Log.i(TAG, "SimpleDownload getURLInputStream : 11");
@@ -247,8 +246,6 @@ public class SimpleDownload implements Runnable {
          * @param result
          */
         void getDownloadResult(int result);
-
-        void getHttpURLConnectioninstance(HttpURLConnection httpURLConnection) throws IOException;
 
         /**
          * 获取文件大小
