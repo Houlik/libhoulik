@@ -77,7 +77,6 @@ public class SimpleDownload implements Runnable {
             httpURLConnection.setDoInput(true);
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setUseCaches(false);
-            httpURLConnection.connect();
 
             if (httpURLConnection.getResponseCode() == 200) {
                 if (downloadCallback != null) {
@@ -154,6 +153,11 @@ public class SimpleDownload implements Runnable {
             randomAccessFile.close();
             inputStream.close();
             httpURLConnection.disconnect();
+
+            if(downloadCallback != null) {
+                //回调下载成功
+                downloadCallback.getDownloadResult(0);
+            }
         } catch (FileNotFoundException e) {
             if(downloadCallback != null) {
                 //回调下载不成功
@@ -166,10 +170,6 @@ public class SimpleDownload implements Runnable {
                 downloadCallback.getDownloadResult(2);
             }
             e.printStackTrace();
-        }
-        if(downloadCallback != null) {
-            //回调下载成功
-            downloadCallback.getDownloadResult(0);
         }
     }
 
