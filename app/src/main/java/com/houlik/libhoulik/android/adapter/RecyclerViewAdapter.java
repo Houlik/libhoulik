@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
  * @since 2020/5/31
  * @description 这是用于RecyclerView 可以消除间距距离
  */
-public class RecycleViewAdapter extends RecyclerView.Adapter {
+public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
     private Process process;
     private int layoutInflater;
 
-    public RecycleViewAdapter(int layoutInflater, Process process){
+    public RecyclerViewAdapter(int layoutInflater, Process process){
         this.layoutInflater = layoutInflater;
         this.process = process;
     }

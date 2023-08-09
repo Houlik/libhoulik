@@ -1,4 +1,4 @@
-package com.houlik.libhoulik.android.adapter;
+package com.houlik.libhoulik.android.listener;
 
 /**
  * 获取适配器物件的position来执行其它事件

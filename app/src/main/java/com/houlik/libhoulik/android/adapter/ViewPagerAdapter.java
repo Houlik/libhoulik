@@ -4,6 +4,9 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.houlik.libhoulik.android.listener.OnAdapterPositionListener;
+
 import java.util.List;
 
 /**

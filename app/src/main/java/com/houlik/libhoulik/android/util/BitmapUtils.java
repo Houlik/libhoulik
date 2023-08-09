@@ -479,8 +479,9 @@ public class BitmapUtils {
         } else if (width < height && height > normalHeight) {// 如果高度高的话根据宽度固定大小缩放
             be = (int) (options.outHeight / normalHeight);
         }
-        if (be <= 0)
+        if (be <= 0) {
             be = 1;
+        }
         return be;
     }
 
@@ -658,6 +659,32 @@ public class BitmapUtils {
         fileTMP.renameTo(new File(context.getExternalFilesDir(newFolder) + "/" + file));
     }
 
+    /**
+     * 自定义裁剪图片
+     * @param bitmap
+     * @param firstX 第一个像素的x坐标
+     * @param firstY 第一个像素的y坐标
+     * @param width 每行中的像素数
+     * @param height 行数
+     * @return
+     */
+    public static Bitmap bitmapCrop(Bitmap bitmap, int firstX, int firstY, int width, int height) {
+        return Bitmap.createBitmap(bitmap, firstX, firstY, width, height, null, false);
+    }
+
+    /**
+     * 旋转90度
+     * @param bitmap
+     * @return
+     */
+    public static Bitmap rotatePic90(Bitmap bitmap, int degrees){
+        Matrix matrix = new Matrix();
+        matrix.reset();
+        matrix.postRotate(degrees);
+        Bitmap tmp = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                bitmap.getHeight(), matrix, true);
+        return tmp;
+    }
 
 
     /**
