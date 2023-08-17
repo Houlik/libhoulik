@@ -53,6 +53,8 @@ public class LocationAction {
     public LocationAction(Context context, OnGpsResult onGpsResult){
         this.context = context;
         this.activity = (Activity)context;
+        this.timeRepeat = timeRepeat;
+        this.minDistance = minDistance;
         this.onGpsResult = onGpsResult;
         locationListener();
         gpsStatusListener();
@@ -233,13 +235,6 @@ public class LocationAction {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * @param timeRepeat 多久执行搜索一次 1000 = 1秒
-     */
-    public void setTimeRepeat(Long timeRepeat){
-        this.timeRepeat = timeRepeat;
     }
 
     public interface OnGpsResult{
