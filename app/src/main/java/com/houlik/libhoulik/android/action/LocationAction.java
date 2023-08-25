@@ -50,7 +50,7 @@ public class LocationAction {
     //距离多远更新 1 = 1米
     private int minDistance = 1;
 
-    public LocationAction(Context context, OnGpsResult onGpsResult){
+    public LocationAction(Context context, OnGpsResult onGpsResult, long timeRepeat, int minDistance){
         this.context = context;
         this.activity = (Activity)context;
         this.timeRepeat = timeRepeat;
