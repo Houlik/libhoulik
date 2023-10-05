@@ -25,12 +25,15 @@ public class ServerUtils {
      * @param url "http://?.houlik.top:8168/folder/folder/folder?"
      */
     public static boolean uploadInfo(FormBody formBody, String url, String headerName, String headerValue, ServerImp serverImp){
-        // 构造请求对象
-        Request request = new Request.Builder()
-                .url(url)
-                .post(formBody)
-                .header(headerName, headerValue)
-                .build();
+
+        Request request = null;
+
+        if(headerName.equals("") | headerName.equals(null) || headerValue.equals("") | headerValue.equals(null)){
+            request = new Request.Builder().url(url).post(formBody).build();
+        }else {
+            // 构造请求对象
+            request = new Request.Builder().url(url).post(formBody).header(headerName, headerValue).build();
+        }
 
         // 构造 OkHttp3 客户端对象
         OkHttpClient client = new OkHttpClient.Builder().build();
@@ -75,10 +78,18 @@ public class ServerUtils {
                 .setType(type)
                 .addFormDataPart(formDataKey, formDataValue, progressRequestBody).build();
 
-        Request request = new Request.Builder()
-                .url(url)
-                .post(requestBody)
-                .header(headerKey, headerValue) .build();
+        Request request = null;
+
+        if(headerKey.equals("") | headerKey.equals(null) || headerValue.equals("") | headerValue.equals(null)){
+            request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody).build();
+        }else{
+            request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .header(headerKey, headerValue).build();
+        }
 
         try {
             Response response = client.newCall(request).execute();
