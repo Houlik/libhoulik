@@ -2,6 +2,7 @@ package com.houlik.libhoulik.houlikapp.server;
 
 import java.io.IOException;
 
+import okhttp3.Call;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -108,6 +109,56 @@ public class ServerUtils {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * 与以上相同,只是当前函数返回的是 Call 对象
+     * @param type
+     * @param formDataKey
+     * @param formDataValue
+     * @param headerKey
+     * @param headerValue
+     * @param url
+     * @param progressRequestBody
+     * @param serverImp
+     * @return
+     */
+    public static Call callUploadData(MediaType type, String formDataKey, String formDataValue, String headerKey, String headerValue, String url, ProgressRequestBody progressRequestBody, ServerImp serverImp) {
+
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(type)
+                .addFormDataPart(formDataKey, formDataValue, progressRequestBody).build();
+
+        Request request = null;
+
+        if (headerKey.equals("") | headerKey.equals(null) || headerValue.equals("") | headerValue.equals(null)) {
+            request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody).build();
+        } else {
+            request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .header(headerKey, headerValue).build();
+        }
+
+        Call call = client.newCall(request);
+
+        try {
+            Response response = call.execute();
+            if (response.isSuccessful()) {
+                String responseString = response.body().string();
+                serverImp.responseServerData(responseString);
+            } else {
+                serverImp.responseFailured(response);
+            }
+        } catch (IOException e) {
+            serverImp.responseException(e);
+            e.printStackTrace();
+        }
+        return call;
     }
 
 }
